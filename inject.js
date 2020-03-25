@@ -7,7 +7,7 @@ var s = [11, 10, 3, 8, 4, 6],
   xor = 177451812,
   add = 8728348608;
 
-function dec(x) {
+function bv2av(x) {
   var r = 0;
   for (var i = 0; i < 6; i++) {
     r += tr[x[s[i]]] * 58 ** i;
@@ -15,7 +15,7 @@ function dec(x) {
   return (r - add) ^ xor;
 }
 
-function enc(x) {
+function av2bv(x) {
   x = (x ^ xor) + add;
   r = 'BV1  4 1 7  '.split('');
   for (var i = 0; i < 6; i++) {
@@ -27,7 +27,7 @@ function enc(x) {
 var url = window.location.pathname + window.location.search;
 
 url = url.replace(/\/video\/(BV([a-zA-Z0-9]+))/, function(str, bv, bvCode) {
-  var avCode = dec(bv);
+  var avCode = bv2av(bv);
   return str.replace(bv, 'av' + avCode);
 });
 
