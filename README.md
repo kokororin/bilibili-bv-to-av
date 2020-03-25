@@ -1,7 +1,7 @@
 # Bilibili BV to av
 
 ## Install
-https://chrome.google.com/webstore/detail/ijepcdfnlcdepamjdjcfgnphjfcpbapc
+https://chrome.google.com/webstore/detail/bdfefmmohdmnbefbmekcljflnhdkbabb
 
 ## Intro
 Convert BV to av for bilibili.com.
