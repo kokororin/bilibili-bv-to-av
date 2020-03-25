@@ -1,0 +1,20 @@
+{
+  "icons": {
+    "16": "images/icon-16.png",
+    "32": "images/icon-32.png",
+    "48": "images/icon-48.png",
+    "128": "images/icon-128.png"
+  },
+  "manifest_version": 2,
+  "name": "__MSG_appName__",
+  "version": "0.1.1",
+  "description": "__MSG_description__",
+  "permissions": [],
+  "content_scripts": [
+    {
+      "matches": ["*://*.bilibili.com/*"],
+      "js": ["inject.js"]
+    }
+  ],
+  "default_locale": "en"
+}
