@@ -24,13 +24,38 @@ function av2bv(x) {
   return r.join('');
 }
 
-var url = window.location.pathname + window.location.search;
+function bvUrl2AvUrl(url) {
+  return url.replace(/\/video\/(BV([a-zA-Z0-9]+))/, function(str, bv) {
+    var avCode = bv2av(bv);
+    return str.replace(bv, 'av' + avCode);
+  });
+}
 
-url = url.replace(/\/video\/(BV([a-zA-Z0-9]+))/, function(str, bv, bvCode) {
-  var avCode = bv2av(bv);
-  return str.replace(bv, 'av' + avCode);
-});
+if (!location.href.startsWith('chrome-extension')) {
+  var url = window.location.pathname + window.location.search;
 
-if (/\/video\/av[0-9]+/.test(url)) {
-  window.history.replaceState(null, null, url);
+  url = bvUrl2AvUrl(url);
+
+  if (/\/video\/av[0-9]+/.test(url)) {
+    window.history.replaceState(null, null, url);
+  }
+
+  var observer = new MutationObserver(function(mutations, observer) {
+    mutations.forEach(function(mutation) {
+      var links = document.querySelectorAll('a');
+      Array.prototype.forEach.call(links, a => {
+        if (a.href) {
+          var href = a.href;
+          href = bvUrl2AvUrl(href);
+          a.href = href;
+        }
+      });
+    });
+  });
+
+  observer.observe(document.querySelector('body'), {
+    childList: true,
+    characterData: true,
+    subtree: true
+  });
 }
