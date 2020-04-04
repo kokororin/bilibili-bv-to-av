@@ -1,7 +1,7 @@
 var $bv = document.querySelector('#bv');
 var $av = document.querySelector('#av');
 
-var bvFunc = function() {
+var bvFunc = function () {
   var bv = $bv.value;
   if (!bv) {
     $av.value = '';
@@ -15,7 +15,7 @@ var bvFunc = function() {
     $av.value = '';
   }
 };
-var avFunc = function() {
+var avFunc = function () {
   var av = $av.value;
   if (!av) {
     $bv.value = '';
